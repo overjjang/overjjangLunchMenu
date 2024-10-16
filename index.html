@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>버짱버짱 오늘의 급식</title>
+</head>
+<body>
+    <h1>버짱버짱 오늘의 급식</h1>
+<div id="todaysLunch">
+    <p id="title">오늘의 급식은?</p>
+</div>
+<div id="container">
+    <p id="menuList">급식을 불러오는중...</p>
+</div>
+    <div id="otherschoolcheak">
+        <label>다른 학교 급식 확인하기:</label>
+        <label for="schoolnameinput"></label><input type="text" id="schoolnameinput" onkeyup="if(window.event.keyCode===13){schoolNameInput()}">
+        <button onclick="schoolNameInput()">확인하기</button>
+        <br>
+        <button onclick="schoolNameInput('아름고등학교')" class="areum">아름고등학교</button>
+    </div>
+    <script src="skript.js"></script>
+<script type="module" src="apikey.js"></script>
+</body>
+</html>
