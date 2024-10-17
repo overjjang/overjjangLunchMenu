@@ -5,6 +5,12 @@ const apiurl = 'https://gubsicmenu.overjjang99.workers.dev/api/todos';
 let isReturing = "";
 let date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
 
+function setDate(){
+    document.getElementById('dateinput').value = new Date().toISOString().slice(0, 10);
+}
+
+setDate()
+
 function schoolNameInput(fixedSchoolName = '') {
     const input = document.getElementById('schoolnameinput').value;
     const otherSchool = document.getElementById('otherschoolcheak');

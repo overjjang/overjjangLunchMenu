@@ -21,14 +21,17 @@
         <div id="otherschoolcheak">
             <label>다른 학교 급식 확인하기:</label>
             <label for="schoolnameinput"></label><input type="text" id="schoolnameinput" onkeyup="if(window.event.keyCode===13){schoolNameInput()}">
-            <button class="btn btn-white btn-sm border border-2" onclick="schoolNameInput()">확인하기</button>
+
             <br>
             <label for="dateinput">날짜 선택:</label>
+<!--            <button id="goToday" class="btn btn-white btn-sm border border-2" onclick="setDate()">오늘로</button>-->
             <input type="date" id="dateinput" value="" onkeyup="if(window.event.keyCode===13){schoolNameInput()}">
+
+            <button class="btn btn-white btn-sm border border-2" onclick="schoolNameInput()">확인하기</button>
             <br>
-            <button onclick="schoolNameInput('아름고등학교')" class="btn btn-primary btn-sm">아름고등학교</button>
-            <button onclick="schoolNameInput('아름중학교')" class="btn btn-secondary btn-sm">아름중학교</button>
-            <button onclick="schoolNameInput('탄방중학교')" class="btn btn-warning btn-sm">탄방중학교</button>
+            <button onclick="schoolNameInput('아름고등학교')" class="areum-hi btn btn-sm">아름고등학교</button>
+            <button onclick="schoolNameInput('아름중학교')" class="areum-mi btn btn-sm">아름중학교</button>
+            <button onclick="schoolNameInput('탄방중학교')" class="tanbang-mi btn btn-sm">탄방중학교</button>
         </div>
         <p style="font-size: 10px; color: darkgray;">급식정보는 정확하지 않을 수 있으며<br>정확한 정보는 학교에서 확인하시기 바랍니다</p>
 
