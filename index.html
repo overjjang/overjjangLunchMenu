@@ -11,24 +11,24 @@
 <body class="w-100 m-auto">
 
     <main class="m-auto mt-5 m-auto" align="center" style="width:500px;">
-        <h1>버짱버짱 오늘의 급식</h1>
+        <h1 class="fs-2 fw-bold">버짱버짱 오늘의 급식</h1>
         <div id="todaysLunch">
             <p id="title">오늘의 급식은?</p>
         </div>
         <div id="container">
-            <p id="menuList">급식을 불러오는중...</p>
+            <p id="menuList" class="">급식을 불러오는중...</p>
         </div>
-        <div id="otherschoolcheak" class="shadow my-2 p-3 border border-2 rounded-2 ">
+        <div id="otherschoolcheak">
             <label>다른 학교 급식 확인하기:</label>
             <label for="schoolnameinput"></label><input type="text" id="schoolnameinput" onkeyup="if(window.event.keyCode===13){schoolNameInput()}">
-            <button class="btn btn-white border border-2 shadow" onclick="schoolNameInput()">확인하기</button>
+            <button class="btn btn-white btn-sm border border-2" onclick="schoolNameInput()">확인하기</button>
             <br>
             <label for="dateinput">날짜 선택:</label>
             <input type="date" id="dateinput" value="" onkeyup="if(window.event.keyCode===13){schoolNameInput()}">
             <br>
-            <button onclick="schoolNameInput('아름고등학교')" class="btn btn-primary">아름고등학교</button>
-            <button onclick="schoolNameInput('아름중학교')" class="btn btn-secondary">아름중학교</button>
-            <button onclick="schoolNameInput('탄방중학교')" class="btn btn-warning">탄방중학교</button>
+            <button onclick="schoolNameInput('아름고등학교')" class="btn btn-primary btn-sm">아름고등학교</button>
+            <button onclick="schoolNameInput('아름중학교')" class="btn btn-secondary btn-sm">아름중학교</button>
+            <button onclick="schoolNameInput('탄방중학교')" class="btn btn-warning btn-sm">탄방중학교</button>
         </div>
         <p style="font-size: 10px; color: darkgray;">급식정보는 정확하지 않을 수 있으며<br>정확한 정보는 학교에서 확인하시기 바랍니다</p>
 
