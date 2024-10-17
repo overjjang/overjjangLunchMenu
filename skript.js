@@ -4,11 +4,20 @@ let atptCode = "";
 let sdSchulCode = "";
 const apikey = 'Nzg5MzU3MDgzMjk5NGUxMWJjNDQyZDJlYjIzYTIxZTA=';
 let isReturing = "";
+let date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
 
 function schoolNameInput(fixedSchoolName = '') {
     const input = document.getElementById('schoolnameinput').value;
-    schoolname = input ? input : schoolname;
-    schoolname = fixedSchoolName ? fixedSchoolName : input;
+    const otherSchool = document.getElementById('otherschoolcheak');
+    const container = document.getElementById('container');
+    const title = document.getElementById('title');
+    const dateinput = document.getElementById('dateinput').value.replace(/-/g, '');
+    console.log(dateinput);
+    date = dateinput ? dateinput : date;
+    title.innerHTML = `오늘의 급식은?`;
+    container.style.visibility = `hidden`;
+    otherSchool.style.visibility = `hidden`;
+    schoolname = input ? input : (fixedSchoolName ? fixedSchoolName : schoolname);
     main()
 }
 
@@ -36,7 +45,6 @@ async function getSchoolInfo(schoolName) {
     }
 }
 function getMealInfo() {
-    let date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
     let apiUrl = `${apiUrlBase}?KEY=${atob(apikey)}&Type=json&pIndex=1&pSize=100&ATPT_OFCDC_SC_CODE=${atptCode}&SD_SCHUL_CODE=${sdSchulCode}&MLSV_YMD=${date}`;
     const container = document.getElementById('container');
     const lunch = document.getElementById('menuList');
@@ -47,16 +55,27 @@ function getMealInfo() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            title.innerHTML = `${data.mealServiceDietInfo[1].row[0].SCHUL_NM}의<br>오늘의 급식`
+            title.innerHTML = `${data.mealServiceDietInfo[1].row[0].SCHUL_NM}의<br>`
+            if(date === new Date().toISOString().slice(0, 10).replace(/-/g, '')) {
+                title.innerHTML += `오늘의 급식은?`;
+            }
+            else {
+                title.innerHTML += `${date.slice(0, 4)}년 ${date.slice(4, 6)}월 ${date.slice(6, 8)}일 급식은?`;
+            }
             menu.innerHTML = "";
             for (let i = 0; i < data.mealServiceDietInfo[1].row.length; i++) {
                 menu.innerHTML += `<h3>${data.mealServiceDietInfo[1].row[i].MMEAL_SC_NM}:</h3>${data.mealServiceDietInfo[1].row[i].DDISH_NM}`;
             }
             otherSchool.style.visibility = `visible`;
             container.style.visibility = `visible`;
+            title.classList.remove('error');
         })
         .catch(error => {
+            title.classList.add('error');
             console.log(error);
+            otherSchool.style.visibility = `visible`;
+            title.innerHTML = `급식 정보가 없습니다.`;
+            menu.innerHTML = "";
         });
 }
 
@@ -64,13 +83,16 @@ async function main() {
     await getSchoolInfo(schoolname);
     console.log(isReturing);
     if(isReturing === "INFO-200") {
-        container = document.getElementById('container');
-        title = document.getElementById('title');
-        menu = document.getElementById('menuList');
+        const container = document.getElementById('container');
+        const title = document.getElementById('title');
+        const menu = document.getElementById('menuList');
+        const otherSchool = document.getElementById('otherschoolcheak');
+        otherSchool.style.visibility = `visible`;
         console.log("school not found");
         container.style.visibility = `hidden`;
         title.innerHTML = `해당 학교를 찾을 수 없습니다`;
         menu.innerHTML = "";
+        title.classList.add('error');
     }
     else {
         getMealInfo();

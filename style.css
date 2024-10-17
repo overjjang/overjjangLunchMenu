@@ -8,6 +8,9 @@ body {
     color: green;
     margin-bottom: 5px;
 }
+#title.error {
+    color: red;
+}
 #container{
     display: inline-block;
     position: relative;
@@ -45,11 +48,21 @@ button {
     margin-right: 2px;
 }
 
+#dateinput {
+    margin: 5px auto;
+    border-radius: 5px;
+    border-color: #f0f0f0;
+    background: linear-gradient(to bottom, #f0f0f0, #dcdcdc);
+}
+
 /* Specific button colors */
-button.areum {
+button.areum-hi {
     background: linear-gradient(to bottom right, #32cdcd, #00fff7);
 }
-button.tanbang{
+button.areum-mi {
+    background: linear-gradient(to bottom, #ff7f50, #ff6347);
+}
+button.tanbang-mi {
     background: linear-gradient(to bottom, yellow, limegreen);
 }
 button:hover {

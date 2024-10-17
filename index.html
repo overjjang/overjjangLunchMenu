@@ -19,9 +19,14 @@
         <label for="schoolnameinput"></label><input type="text" id="schoolnameinput" onkeyup="if(window.event.keyCode===13){schoolNameInput()}">
         <button onclick="schoolNameInput()">확인하기</button>
         <br>
-        <button onclick="schoolNameInput('아름고등학교')" class="areum">아름고등학교</button>
-        <button onclick="schoolNameInput('탄방중학교')" class="tanbang">탄방중학교</button>
+        <label for="dateinput">날짜 선택:</label>
+        <input type="date" id="dateinput" value="" onkeyup="if(window.event.keyCode===13){schoolNameInput()}">
+        <br>
+        <button onclick="schoolNameInput('아름고등학교')" class="areum-hi">아름고등학교</button>
+        <button onclick="schoolNameInput('아름중학교')" class="areum-mi">아름중학교</button>
+        <button onclick="schoolNameInput('탄방중학교')" class="tanbang-mi">탄방중학교</button>
     </div>
+    <p style="font-size: 10px; color: darkgray;">급식정보는 정확하지 않을 수 있으며<br>정확한 정보는 학교에서 확인하시기 바랍니다</p>
     <script src="skript.js"></script>
 </body>
 </html>
