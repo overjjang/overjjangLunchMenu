@@ -36,17 +36,17 @@ body {
     margin: 3px;
 }
 
-button {
-    border-radius: 10px;
-    background: linear-gradient(to bottom, #f0f0f0, #dcdcdc);
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 5px 10px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease;
-    margin-right: 2px;
-}
+/*button {*/
+/*    border-radius: 10px;*/
+/*    background: linear-gradient(to bottom, #f0f0f0, #dcdcdc);*/
+/*    border: 1px solid #ccc;*/
+/*    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+/*    padding: 5px 10px;*/
+/*    font-size: 12px;*/
+/*    cursor: pointer;*/
+/*    transition: box-shadow 0.3s ease;*/
+/*    margin-right: 2px;*/
+/*}*/
 
 #dateinput {
     margin: 5px auto;
@@ -55,16 +55,16 @@ button {
     background: linear-gradient(to bottom, #f0f0f0, #dcdcdc);
 }
 
-/* Specific button colors */
-button.areum-hi {
-    background: linear-gradient(to bottom right, #32cdcd, #00fff7);
-}
-button.areum-mi {
-    background: linear-gradient(to bottom, #ff7f50, #ff6347);
-}
-button.tanbang-mi {
-    background: linear-gradient(to bottom, yellow, limegreen);
-}
+/*!* Specific button colors *!*/
+/*button.areum-hi {*/
+/*    background: linear-gradient(to bottom right, #32cdcd, #00fff7);*/
+/*}*/
+/*button.areum-mi {*/
+/*    background: linear-gradient(to bottom, #ff7f50, #ff6347);*/
+/*}*/
+/*button.tanbang-mi {*/
+/*    background: linear-gradient(to bottom, yellow, limegreen);*/
+/*}*/
 button:hover {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
