@@ -1,8 +1,7 @@
 let schoolname = "아름고등학교";
-const apiUrlBase = 'https://open.neis.go.kr/hub/mealServiceDietInfo';
 let atptCode = "";
 let sdSchulCode = "";
-const apikey = 'Nzg5MzU3MDgzMjk5NGUxMWJjNDQyZDJlYjIzYTIxZTA=';
+const apiurl = 'https://gubsicmenu.overjjang99.workers.dev/api/todos';
 let isReturing = "";
 let date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
 
@@ -17,12 +16,12 @@ function schoolNameInput(fixedSchoolName = '') {
     title.innerHTML = `오늘의 급식은?`;
     container.style.visibility = `hidden`;
     otherSchool.style.visibility = `hidden`;
-    schoolname = input ? input : (fixedSchoolName ? fixedSchoolName : schoolname);
+    schoolname = fixedSchoolName ? fixedSchoolName : (input ? input : schoolname);
     main()
 }
 
 async function getSchoolInfo(schoolName) {
-    let apiUrl = `https://open.neis.go.kr/hub/schoolInfo?KEY=${atob(apikey)}&Type=json&pIndex=1&pSize=100&SCHUL_NM=${schoolName}`;
+    let apiUrl = `https://gubsicmenu.overjjang99.workers.dev/api?mode=name&schoolName=${schoolName}`;
     const container = document.getElementById('container');
     const title = document.getElementById('title');
     const menu = document.getElementById('menuList');
@@ -45,7 +44,7 @@ async function getSchoolInfo(schoolName) {
     }
 }
 function getMealInfo() {
-    let apiUrl = `${apiUrlBase}?KEY=${atob(apikey)}&Type=json&pIndex=1&pSize=100&ATPT_OFCDC_SC_CODE=${atptCode}&SD_SCHUL_CODE=${sdSchulCode}&MLSV_YMD=${date}`;
+    let apiUrl = `https://gubsicmenu.overjjang99.workers.dev/api?mode=menu&atptCode=${atptCode}&schoolCode=${sdSchulCode}&date=${date}`;
     const container = document.getElementById('container');
     const lunch = document.getElementById('menuList');
     const title = document.getElementById('title');

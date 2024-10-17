@@ -3,6 +3,10 @@ body {
     text-align: center;
     margin-top: 50px;
 }
+
+p, h1, h2, h3, span{
+    font-family: Arial, sans-serif;
+}
 #title {
     font-size: 24px;
     color: green;
