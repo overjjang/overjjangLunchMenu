@@ -1,34 +1,43 @@
-import apikey from "./apikey";
-
 let schoolname = "아름고등학교";
 const apiUrlBase = 'https://open.neis.go.kr/hub/mealServiceDietInfo';
 let atptCode = "";
 let sdSchulCode = "";
-const apikey = 'apikey';
+const apikey = 'Nzg5MzU3MDgzMjk5NGUxMWJjNDQyZDJlYjIzYTIxZTA=';
+let isReturing = "";
 
 function schoolNameInput(fixedSchoolName = '') {
     const input = document.getElementById('schoolnameinput').value;
     schoolname = input ? input : schoolname;
     schoolname = fixedSchoolName ? fixedSchoolName : input;
-    main();
+    main()
 }
 
 async function getSchoolInfo(schoolName) {
-    let apiUrl = `https://open.neis.go.kr/hub/schoolInfo?KEY=${apikey}&Type=json&pIndex=1&pSize=100&SCHUL_NM=${schoolName}`;
+    let apiUrl = `https://open.neis.go.kr/hub/schoolInfo?KEY=${atob(apikey)}&Type=json&pIndex=1&pSize=100&SCHUL_NM=${schoolName}`;
+    const container = document.getElementById('container');
+    const title = document.getElementById('title');
+    const menu = document.getElementById('menuList');
     try {
         let response = await fetch(apiUrl);
         let data = await response.json();
         console.log(data);
-        atptCode = data.schoolInfo[1].row[0].ATPT_OFCDC_SC_CODE;
-        sdSchulCode = data.schoolInfo[1].row[0].SD_SCHUL_CODE;
+        if(data.schoolInfo) {
+            atptCode = data.schoolInfo[1].row[0].ATPT_OFCDC_SC_CODE;
+            sdSchulCode = data.schoolInfo[1].row[0].SD_SCHUL_CODE;
+            isReturing = data.schoolInfo[0].head[1].RESULT.CODE;
+        }
+        else isReturing = data.RESULT.CODE;
         console.log(atptCode, sdSchulCode);
     } catch (error) {
         console.log(error);
+        container.style.visibility = `hidden`;
+        title.innerHTML = `해당 학교를 찾을 수 없습니다`;
+        menu.innerHTML = "";
     }
 }
 function getMealInfo() {
     let date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-    let apiUrl = `${apiUrlBase}?KEY=${apikey}&Type=json&pIndex=1&pSize=100&ATPT_OFCDC_SC_CODE=${atptCode}&SD_SCHUL_CODE=${sdSchulCode}&MLSV_YMD=${date}`;
+    let apiUrl = `${apiUrlBase}?KEY=${atob(apikey)}&Type=json&pIndex=1&pSize=100&ATPT_OFCDC_SC_CODE=${atptCode}&SD_SCHUL_CODE=${sdSchulCode}&MLSV_YMD=${date}`;
     const container = document.getElementById('container');
     const lunch = document.getElementById('menuList');
     const title = document.getElementById('title');
@@ -53,7 +62,19 @@ function getMealInfo() {
 
 async function main() {
     await getSchoolInfo(schoolname);
-    getMealInfo();
+    console.log(isReturing);
+    if(isReturing === "INFO-200") {
+        container = document.getElementById('container');
+        title = document.getElementById('title');
+        menu = document.getElementById('menuList');
+        console.log("school not found");
+        container.style.visibility = `hidden`;
+        title.innerHTML = `해당 학교를 찾을 수 없습니다`;
+        menu.innerHTML = "";
+    }
+    else {
+        getMealInfo();
+    }
 }
 
 main();

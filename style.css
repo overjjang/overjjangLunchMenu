@@ -49,6 +49,9 @@ button {
 button.areum {
     background: linear-gradient(to bottom right, #32cdcd, #00fff7);
 }
+button.tanbang{
+    background: linear-gradient(to bottom, yellow, limegreen);
+}
 button:hover {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
