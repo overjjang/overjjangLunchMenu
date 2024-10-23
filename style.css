@@ -24,6 +24,7 @@ body {
     transition: box-shadow 0.3s ease;
 }
 #otherschoolcheak{
+    display: inline-block;
     visibility: hidden;
     margin: 5px;
 }
@@ -49,12 +50,21 @@ button {
 }
 
 #dateinput {
-    margin: 5px auto;
+    margin: 6px auto;
+    padding: 3px 10px;
     border-radius: 5px;
     border-color: #f0f0f0;
     background: linear-gradient(to bottom, #f0f0f0, #dcdcdc);
 }
-
+#schoolList{
+    visibility: hidden;
+    display: inline-block;
+    padding: 20px;
+}
+#schoolSelect{
+    display: inline-block;
+    border-radius: 3px;
+}
 /* Specific button colors */
 button.areum-hi {
     background: linear-gradient(to bottom right, #32cdcd, #00fff7);
@@ -68,4 +78,7 @@ button.tanbang-mi {
 }
 button:hover {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+.hidden {
+    display: none;
 }
