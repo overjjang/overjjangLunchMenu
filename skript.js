@@ -10,7 +10,7 @@ const title = document.getElementById('title');
 const menu = document.getElementById('menuList');
 
 const otherSchool = document.getElementById('otherschoolcheak');
-const dateinput = document.getElementById('dateinput').value.replace(/-/g, '');
+
 
 const schoollist = document.getElementById('schoolList');
 
@@ -23,6 +23,7 @@ setDate()
 
 function schoolNameInput(fixedSchoolName = '') {
     const input = document.getElementById('schoolnameinput').value;
+    const dateinput = document.getElementById('dateinput').value.replace(/-/g, '');
     console.log(dateinput);
     date = dateinput ? dateinput : date;
     title.innerHTML = `오늘의 급식은?`;
