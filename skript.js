@@ -3,7 +3,9 @@ let atptCode = "";
 let sdSchulCode = "";
 const apiurl = 'https://gubsicmenu.overjjang99.workers.dev/api/todos';
 let isReturing = "";
-let date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+let date = new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10).replace(/-/g, '');
+console.log(date);
+
 
 const container = document.getElementById('container');
 const title = document.getElementById('title');
