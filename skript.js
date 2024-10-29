@@ -1,7 +1,7 @@
 let schoolname = "아름고등학교";
 let atptCode = "";
 let sdSchulCode = "";
-const apiurl = 'https://gubsicmenu.overjjang99.workers.dev/api/todos';
+const urlbase = 'https://gubsicmenu.overjjang99.workers.dev/api';
 let isReturing = "";
 let date = new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10).replace(/-/g, '');
 console.log(date);
@@ -10,23 +10,20 @@ console.log(date);
 const container = document.getElementById('container');
 const title = document.getElementById('title');
 const menu = document.getElementById('menuList');
-
 const otherSchool = document.getElementById('otherschoolcheak');
-
-
 const schoollist = document.getElementById('schoolList');
 
 
 function setDate(){
     document.getElementById('dateinput').value = new Date().toISOString().slice(0, 10);
 }
-
 setDate()
 
 function schoolNameInput(fixedSchoolName = '') {
     const input = document.getElementById('schoolnameinput').value;
     const dateinput = document.getElementById('dateinput').value.replace(/-/g, '');
     console.log(dateinput);
+    title.classList.remove('error');
     date = dateinput ? dateinput : date;
     title.innerHTML = `오늘의 급식은?`;
     container.style.visibility = `hidden`;
@@ -36,16 +33,16 @@ function schoolNameInput(fixedSchoolName = '') {
     main()
 }
 
+
 async function getSchoolInfo(schoolName) {
-    let apiUrl = `https://gubsicmenu.overjjang99.workers.dev/api?mode=name&schoolName=${schoolName}`;
+    let apiUrl = `${urlbase}?mode=name&schoolName=${schoolName}`;
     listLabel = document.getElementById('listLabel');
     const schoolSelect = document.getElementById('schoolSelect');
     try {
-
-        //@todo 중복된 학교명 해결법 모색
         let response = await fetch(apiUrl);
         let data = await response.json();
         console.log(data);
+        //학교 정보가 있을 경우 atptCode, sdSchulCode를 저장
         if(data.schoolInfo) {
             if (data.schoolInfo[0].head[0].list_total_count === 1) {
                 atptCode = data.schoolInfo[1].row[0].ATPT_OFCDC_SC_CODE;
@@ -73,9 +70,11 @@ async function getSchoolInfo(schoolName) {
         menu.innerHTML = "";
     }
 }
+
+
 function getMealInfo(inAtptCode, inSdSchulCode) {
     console.log(inAtptCode, inSdSchulCode);
-    let apiUrl = `https://gubsicmenu.overjjang99.workers.dev/api?mode=menu&atptCode=${inAtptCode}&schoolCode=${inSdSchulCode}&date=${date}`;
+    let apiUrl = `${urlbase}?mode=menu&atptCode=${inAtptCode}&schoolCode=${inSdSchulCode}&date=${date}`;
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
@@ -110,6 +109,7 @@ function getMealInfo(inAtptCode, inSdSchulCode) {
         });
 }
 
+
 async function main() {
     await getSchoolInfo(schoolname);
     console.log(isReturing);
@@ -132,5 +132,6 @@ async function main() {
         getMealInfo(atptCode, sdSchulCode);
     }
 }
+
 
 main();
