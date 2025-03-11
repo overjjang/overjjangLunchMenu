@@ -38,7 +38,7 @@ body {
 }
 
 button {
-    border-radius: 10px;
+    border-radius: 20px;
     background: linear-gradient(to bottom, #f0f0f0, #dcdcdc);
     border: 1px solid #ccc;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -76,6 +76,13 @@ button.areum-mi {
 button.tanbang-mi {
     background: linear-gradient(to bottom, yellow, limegreen);
 }
+button.industrial-mi {
+    background: linear-gradient(to bottom, #0b00da, #ffffff);
+}
+button.eoeun-mi {
+    background: linear-gradient(to bottom, #ff0000, #ff00ff);
+}
+
 button:hover {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }

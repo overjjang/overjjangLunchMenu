@@ -88,7 +88,7 @@ function getMealInfo(inAtptCode, inSdSchulCode) {
             }
             menu.innerHTML = "";
             for (let i = 0; i < data.mealServiceDietInfo[1].row.length; i++) {
-                menu.innerHTML += `<h3 class="fs-4 fw-bold " align="center">${data.mealServiceDietInfo[1].row[i].MMEAL_SC_NM}</h3>${data.mealServiceDietInfo[1].row[i].DDISH_NM}`;
+                menu.innerHTML += `<h3 class="fs-3 fw-bold" align="center">${data.mealServiceDietInfo[1].row[i].MMEAL_SC_NM}</h3>${data.mealServiceDietInfo[1].row[i].DDISH_NM}`;
             }
             otherSchool.style.visibility = `visible`;
             otherSchool.style.display = `inline-block`;
