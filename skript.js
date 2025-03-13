@@ -80,23 +80,31 @@ function getMealInfo(inAtptCode, inSdSchulCode) {
         .then(data => {
             console.log(data);
             title.innerHTML = `${data.mealServiceDietInfo[1].row[0].SCHUL_NM}의<br>`
-            if(date === new Date().toISOString().slice(0, 10).replace(/-/g, '')) {
+            if (date === new Date().toISOString().slice(0, 10).replace(/-/g, '')) {
                 title.innerHTML += `오늘의 급식은?`;
-            }
-            else {
+            } else {
                 title.innerHTML += `${date.slice(0, 4)}년 ${date.slice(4, 6)}월 ${date.slice(6, 8)}일 급식은?`;
             }
-            menu.innerHTML = "";
-            for (let i = 0; i < data.mealServiceDietInfo[1].row.length; i++) {
-                menu.innerHTML += `<h3 class="fs-3 fw-bold" align="center">${data.mealServiceDietInfo[1].row[i].MMEAL_SC_NM}</h3>${data.mealServiceDietInfo[1].row[i].DDISH_NM}`;
-            }
+            if (data.mealServiceDietInfo) {
+                menu.innerHTML = "";
+                for (let i = 0; i < data.mealServiceDietInfo[1].row.length; i++) {
+                    menu.innerHTML += `<h3 class="fs-3 fw-bold" align="center">${data.mealServiceDietInfo[1].row[i].MMEAL_SC_NM}</h3>${data.mealServiceDietInfo[1].row[i].DDISH_NM}`;
+                }
+                otherSchool.style.visibility = `visible`;
+                otherSchool.style.display = `inline-block`;
+                container.style.visibility = `visible`;
+                container.style.display = `inline-block`;
+                schoollist.style.visibility = `hidden`;
+                schoollist.style.display = `none`;
+                title.classList.remove('error');
+        } else{
+            title.classList.add('error');
+            console.log(apiUrl);
             otherSchool.style.visibility = `visible`;
             otherSchool.style.display = `inline-block`;
-            container.style.visibility = `visible`;
-            container.style.display = `inline-block`;
-            schoollist.style.visibility = `hidden`;
-            schoollist.style.display = `none`;
-            title.classList.remove('error');
+            title.innerHTML = `급식 정보가 없습니다.`;
+            menu.innerHTML = "";
+            }
         })
         .catch(error => {
             title.classList.add('error');
