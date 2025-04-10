@@ -22,9 +22,11 @@ body {
     text-align: left;
     visibility: hidden;
     transition: box-shadow 0.3s ease;
+    margin: 0 auto;
+    max-width: 500px;
 }
 #otherschoolcheak{
-    display: inline-block;
+    display: block;
     visibility: hidden;
     margin: 5px;
 }
@@ -58,11 +60,11 @@ button {
 }
 #schoolList{
     visibility: hidden;
-    display: inline-block;
+    display: block;
     padding: 20px;
 }
 #schoolSelect{
-    display: inline-block;
+    display: block;
     border-radius: 3px;
 }
 /* Specific button colors */

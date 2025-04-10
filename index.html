@@ -16,15 +16,17 @@
         <div id="todaysLunch">
             <p id="title">오늘의 급식은?</p>
         </div>
-        <div id="container">
-            <p id="menuList" class="">급식을 불러오는중...</p>
+        <div id="container" class="m-auto w-25">
+            <p id="menuList" class="w-auto">급식을 불러오는중...</p>
         </div>
-        <div id="schoolList">
+
+        <div id="schoolList" class="m-auto w-auto">
             <label id="listLabel" for="schoolSelect"></label>
             <select id="schoolSelect" onchange="getMealInfo(this.value.split(',')[0], this.value.split(',')[1])">
                 <option value="0">학교를 선택하세요</option>
             </select>
         </div>
+
         <div id="otherschoolcheak">
             <label>다른 학교 급식 확인하기:</label>
             <label for="schoolnameinput"></label><input type="text" id="schoolnameinput" onkeyup="if(window.event.keyCode===13){schoolNameInput()}">
