@@ -6,6 +6,7 @@ let isReturing = "";
 let date = new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10).replace(/-/g, '');
 console.log(date);
 
+const params = new URLSearchParams(window.location.search);
 
 
 const container = document.getElementById('container');
@@ -120,7 +121,17 @@ function getMealInfo(inAtptCode, inSdSchulCode) {
 
 
 async function main() {
-    await getSchoolInfo(schoolname);
+    if (params.has('schoolname')) {
+        schoolname = params.get('schoolname');
+        await getSchoolInfo(schoolname);
+    }
+    else if (params.has('atptCode')&&params.has('schoolCode')) {
+        atptCode = params.get('atptCode');
+        sdSchulCode = params.get('schoolCode');
+        getMealInfo(atptCode, sdSchulCode);
+    } else{
+        await getSchoolInfo(schoolname);
+    }
     console.log(isReturing);
     if(isReturing === "INFO-200") {
         otherSchool.style.visibility = `visible`;
