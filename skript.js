@@ -7,6 +7,7 @@ let date = new Date(new Date().getTime() + 9 * 60 * 60 * 1000).toISOString().sli
 console.log(date);
 
 
+
 const container = document.getElementById('container');
 const title = document.getElementById('title');
 const menu = document.getElementById('menuList');
@@ -57,7 +58,7 @@ async function getSchoolInfo(schoolName) {
                     schoolSelect.innerHTML += `<option value="${data.schoolInfo[1].row[i].ATPT_OFCDC_SC_CODE},${data.schoolInfo[1].row[i].SD_SCHUL_CODE}">${data.schoolInfo[1].row[i].SCHUL_NM}(${data.schoolInfo[1].row[i].ATPT_OFCDC_SC_NM})</option>`;
                 }
                 schoollist.style.visibility = `visible`;
-                schoollist.style.display = `inline-block`;
+                schoollist.style.display = `block`;
                 isReturing="needSelect";
             }
         }
@@ -91,9 +92,9 @@ function getMealInfo(inAtptCode, inSdSchulCode) {
                     menu.innerHTML += `<h3 class="fs-3 fw-bold" align="center">${data.mealServiceDietInfo[1].row[i].MMEAL_SC_NM}</h3>${data.mealServiceDietInfo[1].row[i].DDISH_NM}`;
                 }
                 otherSchool.style.visibility = `visible`;
-                otherSchool.style.display = `inline-block`;
+                otherSchool.style.display = `block`;
                 container.style.visibility = `visible`;
-                container.style.display = `inline-block`;
+                container.style.display = `block`;
                 schoollist.style.visibility = `hidden`;
                 schoollist.style.display = `none`;
                 title.classList.remove('error');
@@ -101,7 +102,7 @@ function getMealInfo(inAtptCode, inSdSchulCode) {
             title.classList.add('error');
             console.log(apiUrl);
             otherSchool.style.visibility = `visible`;
-            otherSchool.style.display = `inline-block`;
+            otherSchool.style.display = `block`;
             title.innerHTML = `급식 정보가 없습니다.`;
             menu.innerHTML = "";
             }
@@ -111,7 +112,7 @@ function getMealInfo(inAtptCode, inSdSchulCode) {
             console.log(error);
             console.log(apiUrl);
             otherSchool.style.visibility = `visible`;
-            otherSchool.style.display = `inline-block`;
+            otherSchool.style.display = `block`;
             title.innerHTML = `급식 정보가 없습니다.`;
             menu.innerHTML = "";
         });
@@ -123,7 +124,7 @@ async function main() {
     console.log(isReturing);
     if(isReturing === "INFO-200") {
         otherSchool.style.visibility = `visible`;
-        otherSchool.style.display = `inline-block`;
+        otherSchool.style.display = `block`;
         console.log("school not found");
         container.style.visibility = `hidden`;
         title.innerHTML = `해당 학교를 찾을 수 없습니다`;
