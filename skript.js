@@ -120,16 +120,19 @@ function getMealInfo(inAtptCode, inSdSchulCode) {
 }
 
 
-async function main() {
-    if (params.has('schoolname')) {
+async function main(...cheakParams) {
+    cheakParams = cheakParams[0] || false;
+    if (params.has('schoolname') && cheakParams) {
         schoolname = params.get('schoolname');
+        date = params.get('date') ? params.get('date').replace(/-/g, '') : date;
         await getSchoolInfo(schoolname);
     }
-    else if (params.has('atptCode')&&params.has('schoolCode')) {
+    else if (params.has('atptCode')&&params.has('schoolCode') && cheakParams) {
         atptCode = params.get('atptCode');
         sdSchulCode = params.get('schoolCode');
+        date = params.get('date') ? params.get('date').replace(/-/g, '') : date;
         getMealInfo(atptCode, sdSchulCode);
-    } else{
+    } else {
         await getSchoolInfo(schoolname);
     }
     console.log(isReturing);
@@ -154,4 +157,4 @@ async function main() {
 }
 
 
-main();
+main(true);
