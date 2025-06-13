@@ -15,11 +15,17 @@ const menu = document.getElementById('menuList');
 const otherSchool = document.getElementById('otherschoolcheak');
 const schoollist = document.getElementById('schoolList');
 
+let displayOnly = false
 
 function setDate(){
     document.getElementById('dateinput').value = new Date().toISOString().slice(0, 10);
 }
 setDate()
+
+function resetSchool() {
+    setDate();
+    main(true)
+}
 
 function schoolNameInput(fixedSchoolName = '') {
     const input = document.getElementById('schoolnameinput').value;
@@ -99,13 +105,20 @@ function getMealInfo(inAtptCode, inSdSchulCode) {
                 schoollist.style.visibility = `hidden`;
                 schoollist.style.display = `none`;
                 title.classList.remove('error');
-        } else{
-            title.classList.add('error');
-            console.log(apiUrl);
-            otherSchool.style.visibility = `visible`;
-            otherSchool.style.display = `block`;
-            title.innerHTML = `급식 정보가 없습니다.`;
-            menu.innerHTML = "";
+            } else {
+                title.classList.add('error');
+                console.log(apiUrl);
+                otherSchool.style.visibility = `visible`;
+                otherSchool.style.display = `block`;
+                title.innerHTML = `급식 정보가 없습니다.`;
+                menu.innerHTML = "";
+                }
+            if (displayOnly === true) {
+                otherSchool.classList.add('displayOnly');
+                otherSchool.style.visibility = `hidden`;
+                otherSchool.style.display = `none`;
+                const resetButton = document.getElementById('resetButton');
+                resetButton.style.visibility = `visible`;
             }
         })
         .catch(error => {
@@ -132,9 +145,16 @@ async function main(...cheakParams) {
         sdSchulCode = params.get('schoolCode');
         date = params.get('date') ? params.get('date').replace(/-/g, '') : date;
         getMealInfo(atptCode, sdSchulCode);
+        // } else if (params.has('displayOnly') && cheakParams) {
     } else {
+        if (true){
+            displayOnly = true;
+            const resetButton = document.getElementById('resetButton');
+            resetButton.style.visibility = `visible`;
+        }
         await getSchoolInfo(schoolname);
     }
+
     console.log(isReturing);
     if(isReturing === "INFO-200") {
         otherSchool.style.visibility = `visible`;

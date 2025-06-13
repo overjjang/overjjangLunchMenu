@@ -26,7 +26,9 @@
                 <option value="0">학교를 선택하세요</option>
             </select>
         </div>
-
+        <div id="resetButton" class="m-auto w-auto">
+            <button class="btn btn-white btn-sm" onclick="resetSchool()">갱신</button>
+        </div>
         <div id="otherschoolcheak">
             <label>다른 학교 급식 확인하기:</label>
             <label for="schoolnameinput"></label><input type="text" id="schoolnameinput" onkeyup="if(window.event.keyCode===13){schoolNameInput()}">
@@ -37,12 +39,12 @@
             <input type="date" id="dateinput" value="" onkeyup="if(window.event.keyCode===13){schoolNameInput()}">
             <button class="btn btn-white btn-sm border border-2" onclick="schoolNameInput()">확인하기</button>
             <br>
-            <label class="m-2">
-                <button onclick="schoolNameInput('아름고등학교')" class="areum-hi btn btn-sm">아름고등학교</button>
-                <button onclick="schoolNameInput('아름중학교')" class="areum-mi btn btn-sm">아름중학교</button>
-                <button onclick="schoolNameInput('탄방중학교')" class="tanbang-mi btn btn-sm">탄방중학교</button>
-                <button onclick="schoolNameInput('인하대학교사범대학부속고등학교')" class="industrial-mi btn btn-sm">인하대학교사범대학부속(중)고등학교</button>
-                <button onclick="schoolNameInput('어은중학교')" class="eoeun-mi btn btn-sm">어은중학교</button>
+            <label class="m-2" id="schoolNameLabel" for="schoolName">
+                <button onclick="schoolNameInput('아름고등학교')" class="areum-hi btn btn-sm school-btn">아름고등학교</button>
+                <button onclick="schoolNameInput('아름중학교')" class="areum-mi btn btn-sm school-btn">아름중학교</button>
+                <button onclick="schoolNameInput('탄방중학교')" class="tanbang-mi btn btn-sm school-btn">탄방중학교</button>
+                <button onclick="schoolNameInput('인하대학교사범대학부속고등학교')" class="industrial-mi btn btn-sm school-btn">인하대학교사범대학부속(중)고등학교</button>
+                <button onclick="schoolNameInput('어은중학교')" class="eoeun-mi btn btn-sm school-btn">어은중학교</button>
             </label>
         </div>
         <p class="fw-lighter text-muted" style="font-size: 11px">급식정보는 정확하지 않을 수 있으며<br>정확한 정보는 학교에서 확인하시기 바랍니다</p>
