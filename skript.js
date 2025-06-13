@@ -145,9 +145,8 @@ async function main(...cheakParams) {
         sdSchulCode = params.get('schoolCode');
         date = params.get('date') ? params.get('date').replace(/-/g, '') : date;
         getMealInfo(atptCode, sdSchulCode);
-        // } else if (params.has('displayOnly') && cheakParams) {
     } else {
-        if (true){
+        if (params.has('displayOnly') && cheakParams){
             displayOnly = true;
             const resetButton = document.getElementById('resetButton');
             resetButton.style.visibility = `visible`;
